@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.1</version>
+    <title>$title$</title>
+    <authors>simpleSyndicate</authors>
+    <owners>simpleSyndicate</owners>
+    <projectUrl>https://github.com/gazooka/SimpleSyndicate.UriTemplate</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright © simpleSyndicate 2018</copyright>
+    <tags>System.UriTemplate</tags>
+  </metadata>
+</package>
