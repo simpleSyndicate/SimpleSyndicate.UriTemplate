@@ -7,6 +7,7 @@
     <authors>simpleSyndicate</authors>
     <owners>simpleSyndicate</owners>
     <projectUrl>https://github.com/gazooka/SimpleSyndicate.UriTemplate</projectUrl>
+    <repository type="git" url="https://github.com/gazooka/SimpleSyndicate.UriTemplate" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release.</releaseNotes>
