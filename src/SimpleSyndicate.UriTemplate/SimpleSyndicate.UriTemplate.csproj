@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+	<!-- NuGet -->
+	<PackageVersion>1.0.2</PackageVersion>
+	<Title>SimpleSyndicate.UriTemplate</Title>
+	<Authors>simpleSyndicate</Authors>
+	<Owners>simpleSyndicate</Owners>
+	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	<PackageProjectUrl>https://github.com/gazooka/SimpleSyndicate.UriTemplate</PackageProjectUrl>
+    <Description>System.UriTemplate for .Net Standard</Description>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <Copyright>Copyright © simpleSyndicate 2018</Copyright>
+    <PackageTags>System.UriTemplate</PackageTags>
+    <RepositoryUrl>https://github.com/gazooka/SimpleSyndicate.UriTemplate</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
 	<!-- SourceLink -->
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<EmbedUntrackedSources>true</EmbedUntrackedSources>
