@@ -1,4 +1,7 @@
 @echo off
+rem package details
+set nugetpushpackageid=SimpleSyndicate.UriTemplate
+
 rem check nugetutil is available
 set simplesyndicatenugetutil=..\tools\SimpleSyndicate.NuGetUtil.exe
 if not exist %simplesyndicatenugetutil% (
@@ -45,9 +48,13 @@ if not defined gitversion (
     goto :end
 )
 
-rem if %home% isn't defined, set it to the home drive and path
+rem if %home% isn't defined, set it to the home drive and path if they're defined
 if not defined HOME (
-    set HOME=%HOMEDRIVE%%HOMEPATH%
+	if defined HOMEDRIVE (
+		if defined HOMEPATH (
+			set HOME=%HOMEDRIVE%%HOMEPATH%
+		)
+	)
 )
 
 rem if the home drive and path aren't defined, home will still be undefined so set it to the user profile
@@ -65,34 +72,28 @@ if not defined HOME (
 :push
 rem update version and store new version number
 %simplesyndicatenugetutil% versionupdatenoreleasenotes %1
+for /F "delims=" %%i in ('%simplesyndicatenugetutil% currentversion') do set currentversion=%%i
 
 rem build release package and push to nuget
-nuget pack SimpleSyndicate.UriTemplate.csproj -Prop Configuration=Release -Build
+dotnet pack %nugetpushpackageid%.csproj --configuration Release --include-source --include-symbols --output .
 if /i "%~2"=="" (
-    nuget push *.nupkg
+    nuget push %nugetpushpackageid%.%currentversion%.nupkg
+    nuget push %nugetpushpackageid%.%currentversion%.symbols.nupkg -source https://nuget.smbsrc.net/
 ) else (
-    copy *.nupkg %2
-)
-
-rem build symbols package and push to nuget
-nuget pack SimpleSyndicate.UriTemplate.csproj -Prop Configuration=Release -Symbols
-if /i "%~2"=="" (
-    nuget push *.symbols.nupkg -source https://nuget.smbsrc.net/
-) else (
-    copy *.symbols.nupkg %2
+    copy %nugetpushpackageid%.%currentversion%.nupkg %2
+    copy %nugetpushpackageid%.%currentversion%.symbols.nupkg %2
 )
 
 rem remove the packages as we don't need them after they've been pushed, and we don't want to commit them to source control
 del *.nupkg
 
-rem work out the git tags and messages
-for /F "delims=" %%i in ('%simplesyndicatenugetutil% currentversion') do set currentversion=%%i
-set tag=%currentversion%
+rem work out any tags and messages
 if /i "%~2"=="" (
     set message=Set version to %currentversion%; pushed to NuGet.
 ) else (
     set message=Set version to %currentversion%; files copied (package not pushed to NuGet^).
 )
+set tag=%currentversion%
 
 rem commit the changes for this version
 pushd .
