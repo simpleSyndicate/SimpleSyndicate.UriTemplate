@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<!-- NuGet -->
-	<PackageVersion>1.0.2</PackageVersion>
+	<PackageVersion>1.0.3</PackageVersion>
 	<Title>SimpleSyndicate.UriTemplate</Title>
 	<Authors>simpleSyndicate</Authors>
 	<Owners>simpleSyndicate</Owners>
